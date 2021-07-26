@@ -3,6 +3,9 @@ import { connect } from "react-redux";
 import { Component } from "react";
 import * as React from 'react';
 import AddToCalendar from 'react-add-to-calendar';
+import * as moment from 'moment';
+
+
 interface IAppProps {
     router?: any;
     location: any;
@@ -14,7 +17,7 @@ const data = [{
     title: 'Sample Event',
     description: 'This is the sample event provided as an example only',
     location: 'Portland, OR',
-    startTime: '2021-07-26T20:15:00-04:00',
+    startTime: '2021-07-26T12:15:00-04:00',
     endTime: '2021-07-29T21:45:00-04:00'
 }, {
     title: 'Sample Event 2',
@@ -36,9 +39,9 @@ class App extends Component<IAppProps, any> {
         return (
             <div className="app">
                 {event.map((item, i) => {
-                    var date = new Date(item.startTime).getDate()
-                    var startTime = new Date(item.startTime).getTime();
-                    var endTime = new Date(item.endTime).getTime();
+                    var date = moment(item.startTime).format('DD MMM');
+                    var startTime = moment(item.startTime).format('h:mm:ss a');
+                    var endTime = moment(item.endTime).format('h:mm:ss a');
                     return (
                         <div className="card_div" key={i}>
                             <div>
